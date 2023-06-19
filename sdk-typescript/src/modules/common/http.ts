@@ -1,15 +1,32 @@
-import { Config } from "../../config";
+import { Config } from "../../config.js";
 
+/**
+ * Http class
+ * @class
+ * @constructor
+ */
 export default abstract class Http {
   private apiKey: string;
   private baseUrl: string;
 
+  /**
+   * 
+   * @param {object} config 
+   * @param {string} config.apiKey
+   * @param {string} config.baseUrl
+   */
   constructor(config: Config) {
     this.apiKey = config.apiKey;
     this.baseUrl = config.baseUrl;
   }
 
-  protected async request<T>(endpoint: string, options?: string[]): Promise<T> {
+  /**
+   * 
+   * @param {string} endpoint 
+   * @param {object} options 
+   * @returns {Promise<string>}
+   */
+  protected async request<T>(endpoint: string, options?: object): Promise<T> {
     const url = `${this.baseUrl}${endpoint}`;
     const headers = {
       "Content-Type": "application/json",
